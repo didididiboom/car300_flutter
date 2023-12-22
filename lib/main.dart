@@ -1,5 +1,8 @@
 import 'package:car300_flutter/Home.dart';
 import 'package:car300_flutter/buy_car.dart';
+import 'package:car300_flutter/eval.dart';
+import 'package:car300_flutter/mine.dart';
+import 'package:car300_flutter/sale_car.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,18 +25,41 @@ class CarFlutterHome extends StatefulWidget {
 }
 
 class CarFlutterHomeState extends State<CarFlutterHome> {
-  List pages = [MyHome(), BuyCar()];
+  List pages = [MyHome(), BuyCar(), Eval(), SaleCar(), Mine()];
 
-  List<String> labels = [
-    '首页', '买车', '估价', '卖车', '我的'
-  ];
+  List<String> labels = ['首页', '买车', '估价', '卖车', '我的'];
 
   List<BottomNavigationBarItem> bottomItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
-    BottomNavigationBarItem(icon: Icon(Icons.category), label: 'bbb'),
-    BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'ccc'),
-    BottomNavigationBarItem(icon: Icon(Icons.manage_accounts), label: 'ddd'),
-    BottomNavigationBarItem(icon: Icon(Icons.manage_accounts), label: 'ddd'),
+    const BottomNavigationBarItem(
+        icon: Image(
+            image: AssetImage('images/home_icon_shouye_gray.png'),
+            width: 20,
+            height: 20),
+        label: '首页'),
+    const BottomNavigationBarItem(
+        icon: Image(
+            image: AssetImage('images/buy_icon_maiche_gray.png'),
+            width: 20,
+            height: 20),
+        label: '买车'),
+    const BottomNavigationBarItem(
+        icon: Image(
+            image: AssetImage('images/icon_guzhi_333_24@3x.png'),
+            width: 20,
+            height: 20),
+        label: '估价'),
+    const BottomNavigationBarItem(
+        icon: Image(
+            image: AssetImage('images/sell_icon_mai_gray.png'),
+            width: 20,
+            height: 20),
+        label: '卖车'),
+    const BottomNavigationBarItem(
+        icon: Image(
+            image: AssetImage('images/me_icon_geren_gray.png'),
+            width: 20,
+            height: 20),
+        label: '我的'),
   ];
 
   int countPage = 0;
@@ -78,6 +104,7 @@ class CarFlutterHomeState extends State<CarFlutterHome> {
       bottomNavigationBar: BottomNavigationBar(
         items: bottomItems,
         type: BottomNavigationBarType.fixed, // 超过三个属性
+        selectedItemColor: Colors.amber[900],
         currentIndex: countPage,
         onTap: (index) {
           setState(() {

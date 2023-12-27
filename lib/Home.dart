@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart' as MyDio;
+import './json/homeJson.dart';
 
 void main() {
   runApp(MyHome());
@@ -21,33 +23,30 @@ class MyHomeState extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHomeState> {
-  List guide = [
-    {
-      'id': 1,
-      'label': '估值定价',
-      'url': 'https://assets.che300.com/feimg/m/homepage/home_icon_sale@3x.png'
-    },
-    {
-      'id': 2,
-      'label': '买二手车',
-      'url': 'https://assets.che300.com/feimg/m/homepage/home_icon_buy@3x.png'
-    },
-    {
-      'id': 3,
-      'label': '车型识别',
-      'url': 'https://assets.che300.com/feimg/m/homepage/home_icon_shi@3x.png'
-    },
-    {
-      'id': 4,
-      'label': '历史车况',
-      'url': 'https://assets.che300.com/feimg/m/homepage/home_icon_cha@3x.png'
-    },
-  ];
+  var getData = {
+    'list': [],
+    'len': 0
+  };
 
-  List guideTwo = [
-    {'id': 1, 'label': '我要卖车', 'tip': '多平台比价 谁高卖谁', 'icon': ''},
-    {'id': 2, 'label': '车辆估价', 'tip': '买车卖车 查行情价格', 'icon': ''}
-  ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLIst();
+  }
+
+  void getLIst() async {
+    MyDio.Dio dio = MyDio.Dio();
+    MyDio.Response res = await dio.get('http://127.0.0.1:4523/m1/2227902-0-default/home-list');
+    print(res.data['code']);
+    if(res.data['code'] == 2000) {
+      this.setState(() {
+        getData['list'] = res.data['data']['list'];
+        getData['len'] = res.data['data']['list'].length;
+      });
+      print(getData);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +54,14 @@ class _MyHomeState extends State<MyHomeState> {
       backgroundColor: Color(0xFFF5F5F5), // 设置页面背景色为 #F5F5F5
       appBar: null,
       body: Column(children: [
-        Image(
+        const Image(
             image: NetworkImage(
                 'https://assets.che300.com/feimg/m/banner/banner_m@3x.png')),
         Container(
             height: 173,
             width: double.infinity, // 设置为父级宽度的最大值
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.all(15), // 容器内补白
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(15), // 容器内补白
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(8)),
             child: Column(
@@ -90,7 +89,7 @@ class _MyHomeState extends State<MyHomeState> {
                   physics: NeverScrollableScrollPhysics(), // 禁用滚动行为
                 ),
                 Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: 160,
@@ -171,7 +170,84 @@ class _MyHomeState extends State<MyHomeState> {
                   ],
                 )
               ],
-            ))
+            )),
+        Container(
+            height: 199,
+            width: double.infinity, // 设置为父级宽度的最大值
+            margin:
+                const EdgeInsets.only(left: 10, top: 0, right: 10, bottom: 10),
+            padding: const EdgeInsets.all(15), // 容器内补白
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            child: Column(
+              children: [
+                GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5, // 一行展示5列
+                      crossAxisSpacing: 1, // 横轴
+                      mainAxisSpacing: 0, // 主轴的间距
+                      childAspectRatio: 1),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Image(
+                          image: AssetImage(homeCenter[index]['url']),
+                          width: 40,
+                          height: 40,
+                        ),
+                        Text(
+                          homeCenter[index]['label'],
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        )
+                      ],
+                    );
+                  },
+                  itemCount: homeCenter.length,
+                  shrinkWrap: true, // 设置为 true
+                  physics: NeverScrollableScrollPhysics(), // 禁用滚动行为
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      Color.fromRGBO(243, 243, 247, 1),
+                      Color.fromRGBO(252, 243, 242, 1)
+                    ]),
+                    color: Colors.amber[900],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '买车必查 全面查询防止被骗',
+                        style: TextStyle(
+                            fontSize: 12, color: Color.fromRGBO(51, 51, 51, 1)),
+                      ),
+                      Image(
+                        image: AssetImage('images/arrow_ccc_6_10.png'),
+                        width: 6,
+                        height: 10,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            )),
+        Expanded(
+          child: ListView.builder(
+            itemCount: getData['len'] as int,
+            itemBuilder: (context, index) {
+            // print(index);
+            return Container(
+              height: 274,
+              width: 173,
+              child: Column(children: [
+                // Image(image: NetworkImage(getData['list'][index]), width: 173, height: ,)
+              ],),
+            );
+          }),
+        )
       ]),
     );
   }

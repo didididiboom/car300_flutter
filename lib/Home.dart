@@ -34,15 +34,27 @@ class _MyHomeState extends State<MyHomeState> {
 
   void getLIst() async {
     MyDio.Dio dio = MyDio.Dio();
-    MyDio.Response res = await dio
-        .get('http://127.0.0.1:4523/m1/2227902-0-default/home-list-v2');
+    MyDio.Response res =
+        await dio.get('https://m.che300.com/home/get_car_list');
     print(res.data['code']);
     if (res.data['code'] == 2000) {
       this.setState(() {
         getData['list'] = res.data['data'];
         getData['len'] = res.data['data'].length;
       });
+      print(getData);
     }
+  }
+
+  Widget buildInfoText(int index) {
+    final item = (getData['list'] as List)[index];
+    return Text(
+      '${item['register_date']}上牌/${item['mile_age']}万公里/${item['source_name']}',
+      style: TextStyle(
+        fontSize: 11,
+        color: Color.fromRGBO(153, 153, 153, 1),
+      ),
+    );
   }
 
   @override
@@ -59,7 +71,10 @@ class _MyHomeState extends State<MyHomeState> {
                   image: NetworkImage(
                       'https://assets.che300.com/feimg/m/banner/banner_m@3x.png')),
               Container(
-                  height: 173,
+                  constraints: BoxConstraints(
+                    minHeight: 0.0,
+                    maxHeight: double.infinity,
+                  ),
                   width: double.infinity, // 设置为父级宽度的最大值
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(15), // 容器内补白
@@ -177,7 +192,10 @@ class _MyHomeState extends State<MyHomeState> {
                     ],
                   )),
               Container(
-                  height: 199,
+                  constraints: BoxConstraints(
+                    minHeight: 0.0,
+                    maxHeight: double.infinity,
+                  ),
                   width: double.infinity, // 设置为父级宽度的最大值
                   margin: const EdgeInsets.only(
                       left: 10, top: 0, right: 10, bottom: 10),
@@ -242,56 +260,102 @@ class _MyHomeState extends State<MyHomeState> {
                       )
                     ],
                   )),
-
-              // ListView.builder(
-              //     padding: const EdgeInsets.only(
-              //         left: 10, top: 0, right: 10, bottom: 10),
-              //     itemCount: getData['len'] as int,
-              //     itemBuilder: (context, index) {
-              //       // print(index);
-              //       return
-
-              //     }),
             ],
           )),
           SliverList.builder(
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                margin: const EdgeInsets.only(
-                    left: 10, top: 0, right: 10, bottom: 10),
-                decoration: BoxDecoration(
+                  width: double.infinity,
+                  padding:
+                      EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 0),
+                  margin: const EdgeInsets.only(
+                      left: 10, top: 0, right: 10, bottom: 0),
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
-                    )),
-                child: Row(
-                  children: [
-                    Image(
-                      image: NetworkImage(
-                          (getData['list'] as List)[index]['pic_url']),
-                      width: 115,
-                      height: 86,
-                    ),
-                    Column(
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 10),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                      color: Color.fromRGBO(240, 240, 240, 1), // 边框颜色
+                      width: 0.5,
+                    ))),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start, // 交叉轴对齐
                       children: [
-                        Text(
-                          (getData['list'] as List)[index]['title'],
-                          softWrap: true,
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0), // 设置圆角半径,
+                          child: Image(
+                            image: NetworkImage(
+                                (getData['list'] as List)[index]['pic_url']),
+                            width: 115,
+                            height: 87,
+                            fit: BoxFit.cover, // 图片填充方式
+                          ),
+                        ),
+                        SizedBox(width: 10), // 添加间距
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // 限制文本宽度的容器
+                              width: 217, // 设置一个合适的宽度
+                              child: Text(
+                                (getData['list'] as List)[index]['title'],
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            buildInfoText(index),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '${(getData['list'] as List)[index]['price']}万',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color.fromRGBO(255, 102, 0, 1)),
+                                ),
+                                SizedBox(width: 10), // 添加间距
+                                Image(
+                                  image: AssetImage('images/icon_gujia@3x.png'),
+                                  height: 15,
+                                ),
+                                SizedBox(width: 3), // 添加间距
+                                Text(
+                                  '${(getData['list'] as List)[index]['eval_price']}万',
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      color: Color.fromRGBO(102, 102, 102, 1)),
+                                ),
+                                SizedBox(width: 10), // 添加间距
+                                Image(
+                                  image: AssetImage(
+                                      'images/icon_xingjiabi@3x.png'),
+                                  height: 15,
+                                ),
+                                SizedBox(width: 3), // 添加间距
+                                Text(
+                                  '${(getData['list'] as List)[index]['vpr']}%',
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      color: Color.fromRGBO(102, 102, 102, 1)),
+                                )
+                              ],
+                            )
+                          ],
                         ),
                       ],
-                    )
-                  ],
-                ),
-              );
+                    ),
+                  ));
             },
+            itemCount: getData['len'] as int,
           )
         ],
       ),

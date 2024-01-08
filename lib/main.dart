@@ -62,17 +62,21 @@ class CarFlutterHomeState extends State<CarFlutterHome> {
         label: '我的'),
   ];
 
-  int countPage = 0;
+  int countPage = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(labels[countPage]),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
-        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.abc_rounded)),
+      appBar: PreferredSize(
+        preferredSize: Size(0.0, 0.0),
+        child: Container(),
       ),
+      // AppBar(
+      //   title: Text(labels[countPage]),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+      //   // leading: IconButton(onPressed: () {}, icon: Icon(Icons.abc_rounded)),
+      // ),
       // 抽屉
       // drawer: Drawer(
       //   child: ListView(padding: EdgeInsets.zero, children: const [

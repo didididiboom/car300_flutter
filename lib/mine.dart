@@ -8,7 +8,7 @@ class Mine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '首页',
+      title: '我的页面',
       theme: ThemeData.light(),
       home: MineState(),
     );
@@ -25,16 +25,65 @@ class _MineState extends State<MineState> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      body: Column(children: [
-        FadeInImage(
-            placeholder: AssetImage('images/wallhaven-jxd1ww'),
-            image: NetworkImage(
-                'https://assets.che300.com/feimg/m/banner/banner_m@3x.png')),
-            Column(children: [
-              Row(children: [
-
-              ],)
-            ],)
+      body: CustomScrollView(slivers: <Widget>[
+        SliverToBoxAdapter(
+            child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Image(
+                    image: AssetImage('images/icon_shezhi_20.png'),
+                    width: 20,
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Image(
+                    image: AssetImage('images/icon_dianhua_20.png'),
+                    width: 20,
+                    height: 20,
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Image(
+                    image: AssetImage('images/logo.png'),
+                    width: 46,
+                    height: 46,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'che300',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    child: Row(
+                      children: [
+                        Text(
+                          '专享权益',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Color.fromRGBO(158, 100, 66, 1)),
+                        ),
+                        Image(image: AssetImage('iamges/arrow_ccc_6_10.png'))
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ))
       ]),
     );
   }

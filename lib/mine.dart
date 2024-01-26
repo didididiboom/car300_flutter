@@ -70,7 +70,7 @@ class _MineState extends State<MineState> {
                     child: Row(
                       children: [
                         Text(
-                          '专享权益',
+                          '专享权益111',
                           style: TextStyle(
                               fontSize: 12,
                               color: Color.fromRGBO(158, 100, 66, 1)),

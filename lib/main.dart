@@ -6,13 +6,15 @@ import 'package:car300_flutter/sale_car.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(CarFlutter());
+  runApp(const CarFlutter());
 }
 
 class CarFlutter extends StatelessWidget {
+  const CarFlutter({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "CarFlutter",
       home: CarFlutterHome(),
     );
@@ -20,12 +22,14 @@ class CarFlutter extends StatelessWidget {
 }
 
 class CarFlutterHome extends StatefulWidget {
+  const CarFlutterHome({super.key});
+
   @override
   State<CarFlutterHome> createState() => CarFlutterHomeState();
 }
 
 class CarFlutterHomeState extends State<CarFlutterHome> {
-  List pages = [MyHome(), BuyCar(), Eval(), SaleCar(), Mine()];
+  List pages = [const MyHome(), BuyCar(), Eval(), SaleCar(), const Mine()];
 
   List<String> labels = ['首页', '买车', '估价', '卖车', '我的'];
 
@@ -67,7 +71,7 @@ class CarFlutterHomeState extends State<CarFlutterHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(0.0, 0.0),
+        preferredSize: const Size(0.0, 0.0),
         child: Container(),
       ),
       // AppBar(

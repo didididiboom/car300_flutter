@@ -1,6 +1,5 @@
-import 'package:car300_flutter/components/Mine/tabs.dart';
+import 'package:car300_flutter/components/common/car_list_flow.dart';
 import 'package:flutter/material.dart';
-import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import './json/mineJson.dart';
 
 void main() {
@@ -27,7 +26,26 @@ class MineState extends StatefulWidget {
   State<MineState> createState() => _MineState();
 }
 
-class _MineState extends State<MineState> {
+class _MineState extends State<MineState>
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  TabController? _tabController;
+  final PageController _pageController = PageController();
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 4);
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
+  void _onPageChange(int index) {
+    _tabController?.animateTo(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,18 +271,64 @@ class _MineState extends State<MineState> {
               ),
               // tab
               Container(
-                  margin: const EdgeInsets.only(top: 17),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(8)),
-                  height: 200, // 设置高度
-                  child: const TabBarMine()),
+                margin: const EdgeInsets.only(top: 17),
+                decoration: const BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8))),
+                // 隐藏点击效果
+                child: TabBar(
+                  controller: _tabController,
+                  indicator: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/select@2x.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  indicatorPadding: const EdgeInsets.only(left: 0.0),
+                  isScrollable: false, // 标签栏是否可以水平滚动
+                  indicatorSize: TabBarIndicatorSize.label, // 设置选中Tab指示器的大小
+                  labelPadding: const EdgeInsets.all(12), // 设置选中Tab文字的间距
+                  indicatorColor: const Color(0xffff6600), // 指示器颜色
+                  labelColor: const Color(0xff000000), // 选中Tab文字颜色
+                  labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
+                  unselectedLabelColor: const Color(0xff666666), // 未选中Tab中文字颜色
+                  unselectedLabelStyle: const TextStyle(
+                      fontWeight: FontWeight.normal), // 未选中Tab中样式
+                  tabs: const <Widget>[
+                    Text('车源详情'),
+                    Text('视频卖车'),
+                    Text('车友分享'),
+                    Text('车源交流')
+                  ],
+                  onTap: (index) {
+                    // 单击Tab时的回调
+                    print(index);
+                    if (!mounted) {
+                      return;
+                    }
+                    _pageController.jumpToPage(index);
+                  },
+                ),
+              ),
             ],
           ),
-        ))
+        )),
+        // ignore: prefer_const_constructors
+        SliverList.builder(
+          itemBuilder: (context, index) => Container(
+            child: const Text('111'),
+          ),
+        )
+
+        // SliverToBoxAdapter(child: CarListFlow())
       ]),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

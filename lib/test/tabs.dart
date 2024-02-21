@@ -1,4 +1,4 @@
-import 'package:car300_flutter/components/common/car_list.dart';
+import 'package:car300_flutter/test/car_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {

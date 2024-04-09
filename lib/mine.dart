@@ -1,4 +1,4 @@
-import 'package:car300_flutter/components/car_list_state.dart';
+// import 'package:car300_flutter/components/car_list_state.dart';
 import 'package:flutter/material.dart';
 import './json/mineJson.dart';
 
@@ -357,7 +357,7 @@ class _MineState extends State<MineState>
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: Center(child: CarListState()),
+              // child: Center(child: CarListState()),
             ),
             Center(child: Text('视频卖车')),
             Center(child: Text('车友分享')),

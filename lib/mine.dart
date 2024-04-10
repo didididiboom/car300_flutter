@@ -74,7 +74,7 @@ class _MineState extends State<MineState>
                               height: 12,
                             ),
                             Image(
-                              image: AssetImage('images/icon_shezhi_20.png'),
+                              image: AssetImage('images/mine/icon_shezhi_20.png'),
                               width: 20,
                               height: 20,
                             ),
@@ -82,7 +82,7 @@ class _MineState extends State<MineState>
                               width: 10,
                             ),
                             Image(
-                              image: AssetImage('images/icon_dianhua_20.png'),
+                              image: AssetImage('images/mine/icon_dianhua_20.png'),
                               width: 20,
                               height: 20,
                             )
@@ -94,7 +94,7 @@ class _MineState extends State<MineState>
                             const Row(
                               children: [
                                 Image(
-                                  image: AssetImage('images/logo.png'),
+                                  image: AssetImage('images/mine/logo.png'),
                                   width: 46,
                                   height: 46,
                                 ),
@@ -188,7 +188,7 @@ class _MineState extends State<MineState>
                                   // 车辆图标
                                   const Row(children: [
                                     Image(
-                                      image: AssetImage('images/car_demo.png'),
+                                      image: AssetImage('images/mine/car_demo.png'),
                                       width: 60,
                                       height: 40,
                                     ),
@@ -206,7 +206,7 @@ class _MineState extends State<MineState>
                                       width: 10,
                                     ),
                                     Image(
-                                      image: AssetImage('images/edit.png'),
+                                      image: AssetImage('images/mine/edit.png'),
                                       width: 18,
                                       height: 18,
                                     ),
@@ -316,7 +316,7 @@ class _MineState extends State<MineState>
                       controller: _tabController,
                       indicator: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('images/select@2x.png'),
+                          image: AssetImage('images/mine/select@2x.png'),
                           fit: BoxFit.contain,
                         ),
                       ),

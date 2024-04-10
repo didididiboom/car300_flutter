@@ -118,7 +118,7 @@ class _MyHomeState extends State<MyHomeState> {
                               borderRadius: BorderRadius.circular(8),
                               image: const DecorationImage(
                                 image: AssetImage(
-                                    'images/home_maiche@3x.png'), // 背景图片路径
+                                    'images/home/home_maiche@3x.png'), // 背景图片路径
                                 fit: BoxFit.cover, // 图片适应方式
                               ),
                             ),
@@ -142,7 +142,7 @@ class _MyHomeState extends State<MyHomeState> {
                                 ),
                                 Image(
                                   image: AssetImage(
-                                      'images/home_btnicon_maiche@3x.png'),
+                                      'images/home/home_btnicon_maiche@3x.png'),
                                   width: 18,
                                   height: 18,
                                 )
@@ -155,7 +155,7 @@ class _MyHomeState extends State<MyHomeState> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: const DecorationImage(
-                                  image: AssetImage('images/home_gujia@3x.png'),
+                                  image: AssetImage('images/home/home_gujia@3x.png'),
                                   fit: BoxFit.cover),
                             ),
                             child: const Row(
@@ -182,7 +182,7 @@ class _MyHomeState extends State<MyHomeState> {
                                 ),
                                 Image(
                                   image: AssetImage(
-                                      'images/home_btnicon_gujia@3x.png'),
+                                      'images/home/home_btnicon_gujia@3x.png'),
                                   width: 18,
                                   height: 18,
                                 )
@@ -327,7 +327,7 @@ class _MyHomeState extends State<MyHomeState> {
                                 ),
                                 const SizedBox(width: 10), // 添加间距
                                 const Image(
-                                  image: AssetImage('images/icon_gujia@3x.png'),
+                                  image: AssetImage('images/home/icon_gujia@3x.png'),
                                   height: 15,
                                 ),
                                 const SizedBox(width: 3), // 添加间距
@@ -340,7 +340,7 @@ class _MyHomeState extends State<MyHomeState> {
                                 const SizedBox(width: 10), // 添加间距
                                 const Image(
                                   image: AssetImage(
-                                      'images/icon_xingjiabi@3x.png'),
+                                      'images/home/icon_xingjiabi@3x.png'),
                                   height: 15,
                                 ),
                                 const SizedBox(width: 3), // 添加间距

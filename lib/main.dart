@@ -66,7 +66,7 @@ class CarFlutterHomeState extends State<CarFlutterHome> {
         label: '我的'),
   ];
 
-  int countPage = 3;
+  int countPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

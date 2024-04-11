@@ -1,3 +1,4 @@
+import 'package:car300_flutter/car_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as MyDio;
 import './json/homeJson.dart';
@@ -155,7 +156,8 @@ class _MyHomeState extends State<MyHomeState> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: const DecorationImage(
-                                  image: AssetImage('images/home/home_gujia@3x.png'),
+                                  image: AssetImage(
+                                      'images/home/home_gujia@3x.png'),
                                   fit: BoxFit.cover),
                             ),
                             child: const Row(
@@ -277,91 +279,104 @@ class _MyHomeState extends State<MyHomeState> {
                     color: Colors.white,
                   ),
                   child: Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                      color: Color.fromRGBO(240, 240, 240, 1), // 边框颜色
-                      width: 0.5,
-                    ))),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start, // 交叉轴对齐
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0), // 设置圆角半径,
-                          child: Image(
-                            image: NetworkImage(
-                                (getData['list'] as List)[index]['pic_url']),
-                            width: 115,
-                            height: 87,
-                            fit: BoxFit.cover, // 图片填充方式
-                          ),
-                        ),
-                        const SizedBox(width: 10), // 添加间距
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: const EdgeInsets.only(bottom: 10),
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                        color: Color.fromRGBO(240, 240, 240, 1), // 边框颜色
+                        width: 0.5,
+                      ))),
+                      child: GestureDetector(
+                        onTap: () => jumpDetail(context),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start, // 交叉轴对齐
                           children: [
-                            SizedBox(
-                              // 限制文本宽度的容器
-                              width: 200, // 设置一个合适的宽度
-                              child: Text(
-                                (getData['list'] as List)[index]['title'],
-                                softWrap: true,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(10.0), // 设置圆角半径,
+                              child: Image(
+                                image: NetworkImage((getData['list']
+                                    as List)[index]['pic_url']),
+                                width: 115,
+                                height: 87,
+                                fit: BoxFit.cover, // 图片填充方式
                               ),
                             ),
-                            buildInfoText(index),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                            const SizedBox(width: 10), // 添加间距
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${(getData['list'] as List)[index]['price']}万',
-                                  style: const TextStyle(
+                                SizedBox(
+                                  // 限制文本宽度的容器
+                                  width: 200, // 设置一个合适的宽度
+                                  child: Text(
+                                    (getData['list'] as List)[index]['title'],
+                                    softWrap: true,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
                                       fontSize: 16,
-                                      color: Color.fromRGBO(255, 102, 0, 1)),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(width: 10), // 添加间距
-                                const Image(
-                                  image: AssetImage('images/home/icon_gujia@3x.png'),
-                                  height: 15,
-                                ),
-                                const SizedBox(width: 3), // 添加间距
-                                Text(
-                                  '${(getData['list'] as List)[index]['eval_price']}万',
-                                  style: const TextStyle(
-                                      fontSize: 11,
-                                      color: Color.fromRGBO(102, 102, 102, 1)),
-                                ),
-                                const SizedBox(width: 10), // 添加间距
-                                const Image(
-                                  image: AssetImage(
-                                      'images/home/icon_xingjiabi@3x.png'),
-                                  height: 15,
-                                ),
-                                const SizedBox(width: 3), // 添加间距
-                                Text(
-                                  '${(getData['list'] as List)[index]['vpr']}%',
-                                  style: const TextStyle(
-                                      fontSize: 11,
-                                      color: Color.fromRGBO(102, 102, 102, 1)),
+                                buildInfoText(index),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${(getData['list'] as List)[index]['price']}万',
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color:
+                                              Color.fromRGBO(255, 102, 0, 1)),
+                                    ),
+                                    const SizedBox(width: 10), // 添加间距
+                                    const Image(
+                                      image: AssetImage(
+                                          'images/home/icon_gujia@3x.png'),
+                                      height: 15,
+                                    ),
+                                    const SizedBox(width: 3), // 添加间距
+                                    Text(
+                                      '${(getData['list'] as List)[index]['eval_price']}万',
+                                      style: const TextStyle(
+                                          fontSize: 11,
+                                          color:
+                                              Color.fromRGBO(102, 102, 102, 1)),
+                                    ),
+                                    const SizedBox(width: 10), // 添加间距
+                                    const Image(
+                                      image: AssetImage(
+                                          'images/home/icon_xingjiabi@3x.png'),
+                                      height: 15,
+                                    ),
+                                    const SizedBox(width: 3), // 添加间距
+                                    Text(
+                                      '${(getData['list'] as List)[index]['vpr']}%',
+                                      style: const TextStyle(
+                                          fontSize: 11,
+                                          color:
+                                              Color.fromRGBO(102, 102, 102, 1)),
+                                    )
+                                  ],
                                 )
                               ],
-                            )
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                  ));
+                      )));
             },
             itemCount: getData['len'] as int,
           )
         ],
       ),
     );
+  }
+
+  jumpDetail(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) {
+      return CarDetail();
+    }));
   }
 }

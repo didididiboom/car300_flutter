@@ -29,7 +29,13 @@ class CarFlutterHome extends StatefulWidget {
 }
 
 class CarFlutterHomeState extends State<CarFlutterHome> {
-  List pages = [const MyHome(), BuyCar(), Eval(), SaleCar(), const Mine()];
+  List pages = [
+    const MyHome(),
+    const BuyCar(),
+    Eval(),
+    SaleCar(),
+    const Mine()
+  ];
 
   List<String> labels = ['首页', '买车', '估价', '卖车', '我的'];
 
@@ -66,7 +72,7 @@ class CarFlutterHomeState extends State<CarFlutterHome> {
         label: '我的'),
   ];
 
-  int countPage = 1;
+  int countPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

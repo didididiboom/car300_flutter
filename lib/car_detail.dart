@@ -21,25 +21,16 @@ class _CarDetailState extends State<CarDetailState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Muzico'),
+        backgroundColor: Color(0xFF000000),
         elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation',
-          onPressed: () => debugPrint('Navigation button is pressed.'),
-        ),
+        leading: Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: () => debugPrint('Search button is pressed.'),
-          ),
-          IconButton(
-            icon: Icon(Icons.more),
-            tooltip: 'More',
-            onPressed: () => debugPrint('More button is pressed.'),
-          ),
+         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
+         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
+         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
+         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
         ],
       ),
       body: Text('111'),

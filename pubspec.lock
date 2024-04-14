@@ -29,10 +29,10 @@ packages:
     dependency: "direct main"
     description:
       name: bruno
-      sha256: "9e55ea79690c0d745d308b921db422b38e7b04a5cfb94ef365fa0b34db3d88e5"
+      sha256: "7c8708e9e26c8e9c7b42180b0717ae3eedefb5a07ae07b36bc5936fbccc4ebf1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.3"
+    version: "3.4.2"
   card_swiper:
     dependency: "direct main"
     description:

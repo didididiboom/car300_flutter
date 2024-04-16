@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 void main() {
   runApp(CarDetail());
@@ -23,17 +24,76 @@ class _CarDetailState extends State<CarDetailState> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFF000000),
+        // backgroundColor: Color(0xff000000),
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
+        iconTheme: IconThemeData(color: Color(0xffffffff)),
+        leading: new IconButton(
+            onPressed: () => {print('返回')},
+            icon: new Icon(Icons.arrow_back_ios)),
         actions: <Widget>[
-         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
-         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
-         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
-         Image(image: AssetImage('images/car_detail/back.png'), width: 5, height: 5,),
+          Image(
+            image: AssetImage('images/car_detail/icon_fff_duibi.png'),
+            width: 39,
+            height: 19,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Image(
+            image: AssetImage('images/car_detail/icon_fff_shoucangjia.png'),
+            width: 20,
+            height: 20,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Image(
+            image: AssetImage('images/car_detail/icon_fff_jubao.png'),
+            width: 20,
+            height: 20,
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Image(
+            image: AssetImage('images/car_detail/icon_fff_fenxiang.png'),
+            width: 20,
+            height: 20,
+          ),
+          SizedBox(
+            width: 15,
+          ),
         ],
       ),
-      body: Text('111'),
+      body: Column(
+        children: [
+          Image(image: AssetImage('images/car_detail/demo.png')),
+          Row(
+            children: [
+              Row(
+                children: [
+                  // Text.rich()
+                ],
+              ),
+              ElevatedButton(
+                onPressed: () => {print('询问底价')},
+                child: Text(
+                  '询问底价',
+                  style: TextStyle(fontSize: 14),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xffff6600),
+                  foregroundColor: const Color(0XFFFFFFFF),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  minimumSize: const Size(98, 36),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

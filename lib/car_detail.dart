@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 
-void main() {
-  runApp(CarDetail());
-}
-
 class CarDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +26,7 @@ class _CarDetailState extends State<CarDetailState> {
         elevation: 0.0,
         iconTheme: IconThemeData(color: Color(0xffffffff)),
         leading: new IconButton(
-            onPressed: () => {print('返回')},
+            onPressed: () => back(context),
             icon: new Icon(Icons.arrow_back_ios)),
         actions: <Widget>[
           Image(
@@ -280,7 +276,8 @@ class _CarDetailState extends State<CarDetailState> {
                   Row(
                     children: [
                       Image(
-                        image: AssetImage('images/car_detail/maichebicha@3x.png'),
+                        image:
+                            AssetImage('images/car_detail/maichebicha@3x.png'),
                         width: 52,
                         height: 20,
                       ),
@@ -317,8 +314,145 @@ class _CarDetailState extends State<CarDetailState> {
               ),
             ],
           ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          decoration: BoxDecoration(color: Color(0xffffffff)),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '档案',
+                    style: TextStyle(fontSize: 12, color: Color(0xff333333)),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '2022-6',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              '上牌时间',
+                              style: TextStyle(
+                                  fontSize: 11, color: Color(0xff999999)),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '74.44万公里',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              '表显里程',
+                              style: TextStyle(
+                                  fontSize: 11, color: Color(0xff999999)),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '660km',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              '官方续航',
+                              style: TextStyle(
+                                  fontSize: 11, color: Color(0xff999999)),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '南京',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              '车辆所在地',
+                              style: TextStyle(
+                                  fontSize: 11, color: Color(0xff999999)),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '参数',
+                    style: TextStyle(fontSize: 12, color: Color(0xff333333)),
+                  ),
+                  SizedBox(
+                    height: 20,
+                    width: 80,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 100,
+                          child: Center(
+                            child: Text("Item $index"),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Transform.translate(
+                    offset: Offset(0, 1),
+                    child: Image(
+                      image: AssetImage('images/car_detail/arrow.png'),
+                      width: 5,
+                      height: 8,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         )
       ]),
     );
+  }
+
+  // 返回
+  back(context) {
+    Navigator.pop(context);
   }
 }

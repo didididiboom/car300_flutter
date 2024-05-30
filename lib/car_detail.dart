@@ -15,6 +15,155 @@ class CarDetailState extends StatefulWidget {
 }
 
 class _CarDetailState extends State<CarDetailState> {
+  List modelInfoArray = [
+    {"name": "过户次数", "value": "0次"},
+    {"name": "排量", "value": "1.4T"},
+    {"name": "变速箱", "value": "7挡 干式双离合"},
+    {"name": "综合油耗", "value": "5.5L/100km"},
+    {"name": "燃油标号", "value": "95号"},
+    {"name": "最大马力", "value": "150Ps"},
+    {"name": "百公里加速", "value": "8.6s"},
+    {"name": "轴距", "value": "2631mm"}
+  ];
+
+  // 参数行
+  Widget modelInfoList() {
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+            children: modelInfoArray.map((config) {
+          return Container(
+            margin: EdgeInsets.only(right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  config["value"],
+                  style:
+                      const TextStyle(fontSize: 12, color: Color(0xff333333)),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  config["name"],
+                  style:
+                      const TextStyle(fontSize: 11, color: Color(0xff999999)),
+                ),
+              ],
+            ),
+          );
+        }).toList()));
+    // ListView.builder(
+    //   scrollDirection: Axis.horizontal,
+    //   itemBuilder: (BuildContext context, int index) {
+    //     return Container(
+    //       margin: EdgeInsets.only(right: 20),
+    //       child: Column(
+    //         mainAxisAlignment: MainAxisAlignment.center,
+    //         children: [
+    //           Text(
+    //             modelInfoArray[index]["value"],
+    //             style: const TextStyle(fontSize: 12, color: Color(0xff333333)),
+    //           ),
+    //           const SizedBox(height: 5),
+    //           Text(
+    //             modelInfoArray[index]["name"],
+    //             style: const TextStyle(fontSize: 11, color: Color(0xff999999)),
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   },
+    //   itemCount: modelInfoArray.length,
+    // );
+  }
+
+  List highlightConfigArray = [
+    {
+      "name": "定速巡航",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/dsxh.png"
+    },
+    {
+      "name": "胎压监测",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/tyjc.png"
+    },
+    {
+      "name": "无钥匙启动",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/wysqd.png"
+    },
+    {
+      "name": "制动力分配",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/zdlfp.png"
+    },
+    {
+      "name": "后视镜加热",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/hsjjr.png"
+    },
+    {
+      "name": "疲劳驾驶提示",
+      "icon":
+          "https://ssl-assets.che300.com/app/images/highlightsnew/pljsts.png"
+    },
+    {
+      "name": "牵引力控制",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/qylkz.png"
+    },
+    {
+      "name": "儿童座椅接口",
+      "icon":
+          "https://ssl-assets.che300.com/app/images/highlightsnew/etzyjk.png"
+    },
+    {
+      "name": "车内氛围灯",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/cnfwd.png"
+    },
+    {
+      "name": "车身稳定",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/cswd.png"
+    },
+    {
+      "name": "倒车影像",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/dcyx.png"
+    },
+    {
+      "name": "自动驻车",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/zdzc.png"
+    },
+    {
+      "name": "感应雨刷",
+      "icon": "https://ssl-assets.che300.com/app/images/highlightsnew/gyys.png"
+    }
+  ];
+
+  // 参数行
+  Widget highlightConfigList() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: highlightConfigArray.map((config) {
+          return Container(
+            margin: EdgeInsets.only(right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: NetworkImage(config["icon"]),
+                  width: 30,
+                  height: 30,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  config["name"],
+                  style:
+                      const TextStyle(fontSize: 11, color: Color(0xff999999)),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -323,6 +472,7 @@ class _CarDetailState extends State<CarDetailState> {
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           child: Column(
             children: [
+              // 档案
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -411,6 +561,7 @@ class _CarDetailState extends State<CarDetailState> {
               SizedBox(
                 height: 12,
               ),
+              // 参数
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -419,20 +570,43 @@ class _CarDetailState extends State<CarDetailState> {
                     style: TextStyle(fontSize: 12, color: Color(0xff333333)),
                   ),
                   SizedBox(
-                    height: 20,
-                    width: 80,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          width: 100,
-                          child: Center(
-                            child: Text("Item $index"),
-                          ),
-                        );
-                      },
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: modelInfoList(),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Transform.translate(
+                    offset: Offset(0, 1),
+                    child: Image(
+                      image: AssetImage('images/car_detail/arrow.png'),
+                      width: 5,
+                      height: 8,
                     ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              // 亮点
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '亮点',
+                    style: TextStyle(fontSize: 12, color: Color(0xff333333)),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: highlightConfigList(),
+                  ),
+                  SizedBox(
+                    width: 15,
                   ),
                   Transform.translate(
                     offset: Offset(0, 1),
